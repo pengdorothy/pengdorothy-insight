@@ -1,1 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>펭귄×도로시 사주 생성소</title>
+  <style>
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background: linear-gradient(to bottom, #101010, #1a1a1a);
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+    }
 
+    .card {
+      background: #222;
+      border-radius: 2rem;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      text-align: left;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.7rem;
+      margin-top: 0.3rem;
+      border: none;
+      border-radius: 1rem;
+      background: #333;
+      color: #fff;
+    }
+
+    button {
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 1rem;
+      background: #00ffd5;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 2rem;
+      white-space: pre-wrap;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🐧 펭귄×도로시<br/>사주 생성소 🐱</h1>
+
+    <label>이름</label>
+    <input type="text" id="name" placeholder="예: 장기훈" />
+
+    <label>년생 (4자리)</label>
+    <input type="text" id="year" placeholder="예: 1994" maxlength="4"/>
+
+    <label>양력/음력</label>
+    <select id="calendar">
+      <option>양력</option>
+      <option>음력</option>
+    </select>
+
+    <label>태어난 시간</label>
+    <select id="birthtime">
+      <option>모름</option>
+      <option>23~01시 (자시)</option>
+      <option>01~03시 (축시)</option>
+      <option>03~05시 (인시)</option>
+      <option>05~07시 (묘시)</option>
+      <option>07~09시 (진시)</option>
+      <option>09~11시 (사시)</option>
+      <option>11~13시 (오시)</option>
+      <option>13~15시 (미시)</option>
+      <option>15~17시 (신시)</option>
+      <option>17~19시 (유시)</option>
+      <option>19~21시 (술시)</option>
+      <option>21~23시 (해시)</option>
+    </select>
+
+    <label>고민 1 (예: 진로)</label>
+    <input type="text" id="worry1" placeholder="예: 진로" />
+
+    <label>고민 2 (예: 인간관계)</label>
+    <input type="text" id="worry2" placeholder="예: 인간관계" />
+
+    <button onclick="analyze()">🔍 지금 나의 파동 읽기</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function analyze() {
+      const name = document.getElementById('name').value;
+      const year = document.getElementById('year').value;
+      const cal = document.getElementById('calendar').value;
+      const time = document.getElementById('birthtime').value;
+      const worry1 = document.getElementById('worry1').value;
+      const worry2 = document.getElementById('worry2').value;
+
+      if (!name || !year) {
+        alert("이름과 출생연도를 입력해주세요!");
+        return;
+      }
+
+      const msg = 
+`✨ ${name}님의 파동 리포트 ✨
+
+🌞 출생년도: ${year} (${cal})
+🕰️ 출생시각: ${time}
+
+🌀 고민1: ${worry1 || "없음"}
+🌀 고민2: ${worry2 || "없음"}
+
+📜 도로시 분석 결과:
+당신의 파동은 지금 '진동 레벨 7.4'를 가리키고 있습니다.
+내면의 중심이 흔들릴 수 있는 시기이니, 반복되는 패턴에 주의하세요.
+'감사합니다'를 마음속으로 되뇌이면 파동이 안정됩니다.
+
+🍀 오늘의 한마디: '당신의 고민은 우주의 의도가 아닐 수 있습니다.'
+`;
+
+      document.getElementById('result').innerText = msg;
+    }
+  </script>
+</body>
+</html>
