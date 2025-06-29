@@ -77,15 +77,12 @@
     <div class="flex-row">
       <select id="birthYear">
         <option disabled selected>년도</option>
-        <!-- JS로 채움 -->
       </select>
       <select id="birthMonth">
         <option disabled selected>월</option>
-        <!-- JS로 채움 -->
       </select>
       <select id="birthDay">
         <option disabled selected>일</option>
-        <!-- JS로 채움 -->
       </select>
     </div>
 
@@ -127,17 +124,20 @@
   </div>
 
   <script>
-    // 드롭다운 자동 채우기
+    // 연/월/일 자동 채움
     window.onload = function () {
       const yearSelect = document.getElementById("birthYear");
+      const monthSelect = document.getElementById("birthMonth");
+      const daySelect = document.getElementById("birthDay");
+
       for (let y = 1940; y <= 2025; y++) {
         yearSelect.innerHTML += `<option value="${y}">${y}년</option>`;
       }
-      const monthSelect = document.getElementById("birthMonth");
+
       for (let m = 1; m <= 12; m++) {
         monthSelect.innerHTML += `<option value="${m}">${m}월</option>`;
       }
-      const daySelect = document.getElementById("birthDay");
+
       for (let d = 1; d <= 31; d++) {
         daySelect.innerHTML += `<option value="${d}">${d}일</option>`;
       }
@@ -148,4 +148,5 @@
       const year = document.getElementById('birthYear').value;
       const month = document.getElementById('birthMonth').value.padStart(2, '0');
       const day = document.getElementById('birthDay').value.padStart(2, '0');
-      const time = 
+      const time = document.getElementById('birthtime').value;
+      const calendarType 
