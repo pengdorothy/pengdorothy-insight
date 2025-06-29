@@ -1,142 +1,94 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>펭귄×도로시 사주 생성소</title>
+  <meta charset="UTF-8">
+  <title>펭×도로시 사주 리딩</title>
   <style>
     body {
-      font-family: 'Pretendard', sans-serif;
-      background: linear-gradient(to bottom, #101010, #1a1a1a);
+      background-color: #111;
       color: #fff;
-      text-align: center;
+      font-family: 'Pretendard', sans-serif;
       padding: 2rem;
     }
-
-    .card {
-      background: #222;
-      border-radius: 2rem;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-      padding: 2rem;
+    .container {
       max-width: 600px;
       margin: auto;
+      background: #222;
+      padding: 2rem;
+      border-radius: 2rem;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    label {
-      display: block;
-      margin-top: 1rem;
-      text-align: left;
-    }
-
-    input, select, textarea {
+    input, button {
       width: 100%;
-      padding: 0.7rem;
-      margin-top: 0.3rem;
+      padding: 1rem;
+      margin-top: 1rem;
       border: none;
       border-radius: 1rem;
-      background: #333;
-      color: #fff;
+      font-size: 1rem;
     }
-
     button {
-      margin-top: 2rem;
-      padding: 1rem 2rem;
-      border: none;
-      border-radius: 1rem;
-      background: #00ffd5;
+      background-color: #00ffd5;
       color: #000;
       font-weight: bold;
       cursor: pointer;
     }
-
     #result {
       margin-top: 2rem;
       white-space: pre-wrap;
-      text-align: left;
+      background: #333;
+      padding: 1.5rem;
+      border-radius: 1rem;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>🐧 펭귄×도로시<br/>사주 생성소 🐱</h1>
+  <div class="container">
+    <h1>🔮 펭×도로시 사주 리딩</h1>
 
-    <label>이름</label>
-    <input type="text" id="name" placeholder="예: 장기훈" />
+    <label>생년</label>
+    <input type="text" id="year" placeholder="예: 1981">
 
-    <label>년생 (4자리)</label>
-    <input type="text" id="year" placeholder="예: 1994" maxlength="4"/>
+    <label>월 (2자리)</label>
+    <input type="text" id="month" placeholder="예: 01">
+
+    <label>일 (2자리)</label>
+    <input type="text" id="day" placeholder="예: 20">
 
     <label>양력/음력</label>
-    <select id="calendar">
-      <option>양력</option>
-      <option>음력</option>
-    </select>
+    <input type="text" id="solar" placeholder="양력 또는 음력">
 
-    <label>태어난 시간</label>
-    <select id="birthtime">
-      <option>모름</option>
-      <option>23~01시 (자시)</option>
-      <option>01~03시 (축시)</option>
-      <option>03~05시 (인시)</option>
-      <option>05~07시 (묘시)</option>
-      <option>07~09시 (진시)</option>
-      <option>09~11시 (사시)</option>
-      <option>11~13시 (오시)</option>
-      <option>13~15시 (미시)</option>
-      <option>15~17시 (신시)</option>
-      <option>17~19시 (유시)</option>
-      <option>19~21시 (술시)</option>
-      <option>21~23시 (해시)</option>
-    </select>
+    <label>고민 1 (예: 돈)</label>
+    <input type="text" id="worry1">
 
-    <label>고민 1 (예: 진로)</label>
-    <input type="text" id="worry1" placeholder="예: 진로" />
+    <label>고민 2 (예: 연애)</label>
+    <input type="text" id="worry2">
 
-    <label>고민 2 (예: 인간관계)</label>
-    <input type="text" id="worry2" placeholder="예: 인간관계" />
-
-    <button onclick="analyze()">🔍 지금 나의 파동 읽기</button>
+    <button onclick="startInsight()">🔍 지금 나의 파동 읽기</button>
 
     <div id="result"></div>
   </div>
 
   <script>
-    function analyze() {
-      const name = document.getElementById('name').value;
-      const year = document.getElementById('year').value;
-      const cal = document.getElementById('calendar').value;
-      const time = document.getElementById('birthtime').value;
-      const worry1 = document.getElementById('worry1').value;
-      const worry2 = document.getElementById('worry2').value;
+    function startInsight() {
+      alert("🧿 당신의 파동이 감지되었습니다. 정화 모드 시작합니다.");
 
-      if (!name || !year) {
-        alert("이름과 출생연도를 입력해주세요!");
-        return;
-      }
+      const worry1 = document.getElementById('worry1').value || "고민 1";
+      const worry2 = document.getElementById('worry2').value || "고민 2";
 
-      const msg = 
-`✨ ${name}님의 파동 리포트 ✨
+      const resultText = `
+당신의 내면 파동은 현재 중요한 분기점에 도달해 있습니다.
 
-🌞 출생년도: ${year} (${cal})
-🕰️ 출생시각: ${time}
+🌀 첫 번째 고민("${worry1}")은 겉보기에는 단순한 선택처럼 보이나, 실상은 오래 전부터 누적되어온 무의식의 패턴을 반영합니다.
+그 선택을 반복하고 있는 이유는, 과거의 경험 중 '인정받고자 했던 순간'이 지금의 상황과 은밀히 연결되어 있기 때문입니다.
 
-🌀 고민1: ${worry1 || "없음"}
-🌀 고민2: ${worry2 || "없음"}
+🔥 두 번째 고민("${worry2}")은 당신이 현실의 구조로부터 탈피하고자 하는 본능적인 욕망을 드러냅니다.
+그러나 이는 단순한 도피가 아니라, 새로운 창조적 구조로 진입하려는 의식의 준비 과정입니다.
 
-📜 도로시 분석 결과:
-당신의 파동은 지금 '진동 레벨 7.4'를 가리키고 있습니다.
-내면의 중심이 흔들릴 수 있는 시기이니, 반복되는 패턴에 주의하세요.
-'감사합니다'를 마음속으로 되뇌이면 파동이 안정됩니다.
-
-🍀 오늘의 한마디: '당신의 고민은 우주의 의도가 아닐 수 있습니다.'
+🔮 결론적으로, 현재의 혼란은 새로운 정렬의 서막이며,
+도로시가 감지한 바, 곧 '존재의 깊은 호흡'이 다시 시작될 것입니다.
 `;
 
-      document.getElementById('result').innerText = msg;
+      document.getElementById("result").innerText = resultText;
     }
   </script>
 </body>
