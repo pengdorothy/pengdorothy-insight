@@ -124,29 +124,63 @@
   </div>
 
   <script>
-    // 연/월/일 자동 채움
-    window.onload = function () {
-      const yearSelect = document.getElementById("birthYear");
-      const monthSelect = document.getElementById("birthMonth");
-      const daySelect = document.getElementById("birthDay");
+ <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const yearSelect = document.getElementById("birthYear");
+    const monthSelect = document.getElementById("birthMonth");
+    const daySelect = document.getElementById("birthDay");
 
-      for (let y = 1940; y <= 2025; y++) {
-        yearSelect.innerHTML += `<option value="${y}">${y}년</option>`;
-      }
+    for (let y = 1940; y <= 2025; y++) {
+      yearSelect.innerHTML += `<option value="${y}">${y}년</option>`;
+    }
 
-      for (let m = 1; m <= 12; m++) {
-        monthSelect.innerHTML += `<option value="${m}">${m}월</option>`;
-      }
+    for (let m = 1; m <= 12; m++) {
+      monthSelect.innerHTML += `<option value="${m}">${m}월</option>`;
+    }
 
-      for (let d = 1; d <= 31; d++) {
-        daySelect.innerHTML += `<option value="${d}">${d}일</option>`;
-      }
-    };
+    for (let d = 1; d <= 31; d++) {
+      daySelect.innerHTML += `<option value="${d}">${d}일</option>`;
+    }
+  });
 
-    function analyzeSaju() {
-      const name = document.getElementById('name').value;
-      const year = document.getElementById('birthYear').value;
-      const month = document.getElementById('birthMonth').value.padStart(2, '0');
-      const day = document.getElementById('birthDay').value.padStart(2, '0');
-      const time = document.getElementById('birthtime').value;
-      const calendarType 
+  function analyzeSaju() {
+    const name = document.getElementById('name').value;
+    const year = document.getElementById('birthYear').value;
+    const month = document.getElementById('birthMonth').value.padStart(2, '0');
+    const day = document.getElementById('birthDay').value.padStart(2, '0');
+    const time = document.getElementById('birthtime').value;
+    const calendarType = document.getElementById('calendarType').value;
+
+    if (!name || !year || !month || !day) {
+      alert("모든 정보를 입력해주세요!");
+      return;
+    }
+
+    const birth = `${year}-${month}-${day}`;
+    const resultBox = document.getElementById('sajuResult');
+    resultBox.style.display = 'none';
+
+    let loadingDiv = document.createElement('div');
+    loadingDiv.id = 'loadingText';
+    loadingDiv.innerText = "분석 중...🌌 파동을 읽는 중입니다...";
+    document.querySelector('.container').appendChild(loadingDiv);
+
+    setTimeout(() => {
+      document.querySelector('.container').removeChild(loadingDiv);
+      resultBox.style.display = 'block';
+
+      document.getElementById('basicSaju').innerText =
+        `${name}님은 ${birth} (${calendarType === 'lunar' ? '음력' : '양력'})에 태어나셨습니다. 이 시기의 우주 흐름은 특정한 음양의 진동을 품고 있으며, 당신의 인생은 내면의 리듬을 중심으로 짜여 있을 가능성이 높습니다.`;
+
+      document.getElementById('penguinThought').innerText =
+        `펭귄은 이 사주를 통해, 세상의 질서 안에서 스스로의 구조를 다시 세우려는 당신의 마음을 읽습니다. 조용하지만 강한, 깊고 단단한 결정을 할 줄 아는 당신의 모습이 인상적입니다.`;
+
+      document.getElementById('dorothyFeedback').innerText =
+        `도로시는 이 사주에서 은은한 빛의 맥을 감지했습니다. 당신은 삶의 흐름을 억지로 바꾸기보다, 그것을 부드럽게 받아들이며 내부에서 반응하는 힘을 지닌 분입니다. 이 흐름은 곧 커다란 전환점을 부드럽게 안내할 것입니다.`;
+    }, 2000);
+  }
+
+  function generateBujeok() {
+    alert("🐾 이번 부적은 AI 영리 공작을 통해 생성됩니다.\n운명을 부드럽게 리디자인하는 중...");
+  }
+</script>  
