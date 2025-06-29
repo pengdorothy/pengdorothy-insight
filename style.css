@@ -1,44 +1,62 @@
-
 body {
-    font-family: 'Pretendard', sans-serif;
-    background: linear-gradient(to bottom, #101010, #1a1a1a);
-    color: #fff;
-    text-align: center;
-    padding: 2rem;
+  font-family: 'Pretendard', sans-serif;
+  background: linear-gradient(to bottom, #0f0f0f, #1a1a1a);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding: 2rem;
+  min-height: 100vh;
+  margin: 0;
 }
+
 .card {
-    background: #222;
-    border-radius: 2rem;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-    padding: 2rem;
-    max-width: 600px;
-    margin: auto;
+  background: #222;
+  border-radius: 2rem;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
 }
+
 h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  line-height: 1.4;
 }
+
 label {
-    display: block;
-    margin-top: 1rem;
-    text-align: left;
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  margin-top: 1.2rem;
 }
-input, textarea {
-    width: 100%;
-    padding: 0.7rem;
-    margin-top: 0.3rem;
-    border: none;
-    border-radius: 1rem;
-    background: #333;
-    color: #fff;
+
+input, select {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 1rem;
+  border: none;
+  background: #333;
+  color: #fff;
+  box-sizing: border-box;
 }
+
 button {
-    margin-top: 2rem;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 1rem;
-    background: #00ffd5;
-    color: #000;
-    font-weight: bold;
-    cursor: pointer;
+  margin-top: 2rem;
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 1.5rem;
+  background: #00ffd5;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #00cfa4;
 }
