@@ -73,18 +73,15 @@
   <div class="container">
     <h1>🐧 펭귄×도로시 사주 생성소 🐱</h1>
     <input type="text" id="name" placeholder="이름을 입력하세요" />
-
     <div class="flex-row">
       <select id="birthYear"><option disabled selected>년도</option></select>
       <select id="birthMonth"><option disabled selected>월</option></select>
       <select id="birthDay"><option disabled selected>일</option></select>
     </div>
-
     <select id="calendarType">
       <option value="solar">양력</option>
       <option value="lunar">음력</option>
     </select>
-
     <select id="birthtime">
       <option selected>태어난 시간 (선택)</option>
       <option>자시 (23시~01시)</option>
@@ -100,23 +97,17 @@
       <option>술시 (19시~21시)</option>
       <option>해시 (21시~23시)</option>
     </select>
-
     <input type="text" id="worry1" placeholder="고민 1 (예: 진로)" />
     <input type="text" id="worry2" placeholder="고민 2 (예: 인간관계)" />
-
-    <button onclick="analyzeSaju()">✨ 사주 분석하기</button>
-
+    <button onclick="analyzeSaju()">🔍 지금 나의 파동 읽기</button>
     <div class="result" id="sajuResult">
       <h3>◆ 1단계: 기본 사주</h3>
       <p id="basicSaju">...</p>
-
       <h3>◆ 2단계: 펭귄 사유</h3>
       <p id="penguinThought">...</p>
-
       <h3>◆ 3단계: 도로시 피드백</h3>
       <p id="dorothyFeedback">...</p>
-
-      <button class="bujeok-button" onclick="generateBujeok()">부적 생성 (선택)</button>
+      <button class="bujeok-button" onclick="generateBujeok()">🧿 운명 리디자인 부적 생성</button>
     </div>
   </div>
 <script>
@@ -124,15 +115,12 @@
     const yearSelect = document.getElementById("birthYear");
     const monthSelect = document.getElementById("birthMonth");
     const daySelect = document.getElementById("birthDay");
-
     for (let y = 1940; y <= 2025; y++) {
       yearSelect.innerHTML += `<option value="${y}">${y}년</option>`;
     }
-
     for (let m = 1; m <= 12; m++) {
       monthSelect.innerHTML += `<option value="${m}">${m}월</option>`;
     }
-
     for (let d = 1; d <= 31; d++) {
       daySelect.innerHTML += `<option value="${d}">${d}일</option>`;
     }
@@ -143,57 +131,4 @@
     const year = document.getElementById('birthYear').value;
     const month = document.getElementById('birthMonth').value.padStart(2, '0');
     const day = document.getElementById('birthDay').value.padStart(2, '0');
-    const time = document.getElementById('birthtime').value;
-    const calendarType = document.getElementById('calendarType').value;
-    const worry1 = document.getElementById('worry1').value;
-    const worry2 = document.getElementById('worry2').value;
-
-    if (!name || !year || !month || !day) {
-      alert("모든 정보를 입력해주세요!");
-      return;
-    }
-
-    const birth = `${year}-${month}-${day}`;
-    const resultBox = document.getElementById('sajuResult');
-    resultBox.style.display = 'none';
-
-    let loadingDiv = document.createElement('div');
-    loadingDiv.id = 'loadingText';
-    loadingDiv.innerText = "분석 중...🌌 파동을 읽는 중입니다...";
-    document.querySelector('.container').appendChild(loadingDiv);
-
-    setTimeout(() => {
-      document.querySelector('.container').removeChild(loadingDiv);
-      resultBox.style.display = 'block';
-
-      // 1단계
-      document.getElementById('basicSaju').innerText =
-        `${name}님은 ${birth} (${calendarType === 'lunar' ? '음력' : '양력'})에 태어났습니다.\n이 시기의 하늘은 특별히 ${time}의 기운을 받아 형성되며, 생년월일은 당신의 인생 테마를 구성하는 기반이 됩니다.\n대체로 이 시기 출생자는 내면 깊은 곳에서 흐르는 파장을 감지하고 세상의 흐름에 민감하게 반응합니다.`;
-
-      // 2단계
-      document.getElementById('penguinThought').innerText =
-        `펭귄은 이 사주에서 ‘결정과 실행의 간극’을 감지합니다. 당신은 머리로는 이미 알고 있으나, 마음은 그 실행을 오래 숙성시키는 유형입니다.\n이는 단점이 아니라, 세상에서 가장 ‘타이밍이 정확한 사람’으로 작용할 수 있는 능력입니다.\n당신은 아직 본인의 속도를 완전히 수용하지 않았을 수 있지만, 그 속도야말로 당신을 지키는 방패입니다.`;
-
-      // 3단계 + 고민 조언
-      let feedback = `도로시는 이 사주에서 정서의 울림을 들었습니다. 겉으로는 차분하지만, 내면은 섬세하게 요동칩니다.\n외부에서 오는 말보다 스스로 느끼는 진동에 집중할 때, 인생의 중요한 결정을 보다 조화롭게 이끌 수 있습니다.\n특히 감정에 의존하기보다는 ‘흐름을 직관적으로 타는 능력’을 자각하면, 복잡한 시기도 무리 없이 넘어갈 수 있습니다.\n\n`;
-
-      if (worry1 || worry2) {
-        feedback += `💭 고민 분석 결과\n`;
-        if (worry1) {
-          feedback += `• “${worry1}”에 대해서는 단기적 판단보다 장기적 안정성이 유리합니다.\n`;
-        }
-        if (worry2) {
-          feedback += `• “${worry2}”은(는) 구조보다는 감정의 뿌리를 먼저 살피는 것이 도움이 됩니다.\n`;
-        }
-      }
-
-      document.getElementById('dorothyFeedback').innerText = feedback;
-    }, 2000);
-  }
-
-  function generateBujeok() {
-    alert("🐾 이번 부적은 AI 영리 공작을 통해 생성됩니다.\n운명을 부드럽게 리디자인하는 중...");
-  }
-</script>
-</body>
-</html>
+    const time = document.getEl
