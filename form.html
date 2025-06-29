@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>펭×도로시 사주 분석</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+        <h1>사주 분석 입력 폼</h1>
+        <form action="#" method="post">
+            <label for="name">이름</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="birthdate">태어난 날짜</label>
+            <input type="date" id="birthdate" name="birthdate" required>
+
+            <label for="birthtime">태어난 시간 (선택사항)</label>
+            <input type="time" id="birthtime" name="birthtime">
+
+            <label for="penguin">펭귄 사유 해석</label>
+            <textarea id="penguin" name="penguin" placeholder="현재 고민, 상황 등을 입력해주세요"></textarea>
+
+            <label for="dorothy">도로시 감응 해석</label>
+            <textarea id="dorothy" name="dorothy" placeholder="특별히 알고 싶은 부분이 있다면 적어주세요"></textarea>
+
+            <button type="submit">분석 요청</button>
+        </form>
+    </div>
+</body>
+</html>
