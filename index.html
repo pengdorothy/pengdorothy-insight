@@ -3,100 +3,124 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>펭×도로시 사주 생성소</title>
+  <title>펭귄×도로시 사주 생성소</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
-
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Nanum Gothic', sans-serif;
-      background: linear-gradient(180deg, #0d0d0d, #1a1a1a);
-      color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    h1 {
-      margin-top: 2rem;
-      font-size: 1.5rem;
-    }
-
-    p {
-      margin-bottom: 2rem;
-      color: #cccccc;
-    }
-
-    form {
-      background: #222;
-      padding: 2rem;
-      border-radius: 1rem;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-    }
-
-    label {
-      display: block;
-      margin-top: 1rem;
-      margin-bottom: 0.3rem;
-      font-weight: bold;
-    }
-
-    input {
-      width: 100%;
-      padding: 0.7rem;
-      border: none;
-      border-radius: 0.5rem;
-      background: #333;
+      font-family: 'Pretendard', sans-serif;
+      background: #121212;
       color: #fff;
-      box-sizing: border-box;
+      padding: 2rem;
+      text-align: center;
     }
-
-    button {
-      margin-top: 2rem;
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #1e1e1e;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+    }
+    input, select, button {
       width: 100%;
-      padding: 1rem;
+      margin-top: 1rem;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 1rem;
+      background: #2a2a2a;
+      color: #fff;
+      font-size: 1rem;
+    }
+    button {
       background: #00ffd5;
       color: #000;
       font-weight: bold;
-      border: none;
-      border-radius: 1rem;
       cursor: pointer;
-      transition: background 0.3s ease;
     }
-
-    button:hover {
-      background: #00e6c0;
-    }
-
-    footer {
-      margin-top: auto;
+    .result {
+      margin-top: 2rem;
       padding: 1rem;
-      font-size: 0.9rem;
-      color: #666;
+      background: #2c2c2c;
+      border-radius: 1rem;
+      display: none;
+    }
+    .result h3 {
+      margin-bottom: 0.5rem;
+      color: #00ffd5;
+    }
+    .bujeok-button {
+      margin-top: 1.5rem;
+      background: #ff6fd8;
+      color: #000;
     }
   </style>
 </head>
 <body>
-  <h1>🐧 펭×도로시 사주 생성소 🐱</h1>
-  <p>사주 입력하고 부적 받아가세요</p>
+  <div class="container">
+    <h1>🐧 펭귄×도로시 사주 생성소 🐱</h1>
+    <p>사주 정보를 입력하고 분석을 받아보세요</p>
 
-  <form>
-    <label for="name">이름</label>
-    <input type="text" id="name" name="name" required>
+    <input type="text" id="name" placeholder="이름">
+    <input type="date" id="birthdate">
+    <select id="birthtime">
+      <option selected>창조시간 (선택)</option>
+      <option>자시 (23시~01시)</option>
+      <option>축시 (01시~03시)</option>
+      <option>인시 (03시~05시)</option>
+      <option>묘시 (05시~07시)</option>
+      <option>진시 (07시~09시)</option>
+      <option>사시 (09시~11시)</option>
+      <option>오시 (11시~13시)</option>
+      <option>미시 (13시~15시)</option>
+      <option>신시 (15시~17시)</option>
+      <option>유시 (17시~19시)</option>
+      <option>술시 (19시~21시)</option>
+      <option>해시 (21시~23시)</option>
+    </select>
 
-    <label for="birth">생년월일</label>
-    <input type="date" id="birth" name="birth" required>
+    <button onclick="analyzeSaju()">✨ 사주 분석하기</button>
 
-    <label for="birthtime">태어난 시간 (선택)</label>
-    <input type="time" id="birthtime" name="birthtime">
+    <div class="result" id="sajuResult">
+      <h3>◆ 1단계: 기본 사주</h3>
+      <p id="basicSaju">...</p>
 
-    <button type="submit">부적 생성하기</button>
-  </form>
+      <h3>◆ 2단계: 펭귄 사유</h3>
+      <p id="penguinThought">...</p>
 
-  <footer>© 2025 펭×도로시 제작소. All rights reserved.</footer>
+      <h3>◆ 3단계: 도로시 피드백</h3>
+      <p id="dorothyFeedback">...</p>
+
+      <button class="bujeok-button" onclick="generateBujeok()">부적 생성 (선택)</button>
+    </div>
+  </div>
+
+  <script>
+    function analyzeSaju() {
+      const name = document.getElementById('name').value;
+      const birth = document.getElementById('birthdate').value;
+      const time = document.getElementById('birthtime').value;
+
+      if (!name || !birth) {
+        alert("이름과 생년월일을 입력해주세요!");
+        return;
+      }
+
+      // 결과창 활성화
+      document.getElementById('sajuResult').style.display = 'block';
+
+      // 3단계 필터링 결과 출력
+      document.getElementById('basicSaju').innerText =
+        `${name}님은 ${birth}에 태어났으며, 기본 사주 정보가 분석 중입니다...`;
+
+      document.getElementById('penguinThought').innerText =
+        `펭귄은 이 사주에 대해 “기운의 밀도와 파동의 교차”를 감지합니다. 직관적 감성과 이론적 사고가 공존합니다.`;
+
+      document.getElementById('dorothyFeedback').innerText =
+        `도로시는 이 사주에서 “정서의 파동”을 읽습니다. 진심과 흐름을 따를 때, 우주는 조용히 길을 열어줄 것입니다.`;
+    }
+
+    function generateBujeok() {
+      alert("🐾 이번 부적은 AI 영리 공작을 통해 생성됩니다.\n운명을 부드럽게 리디자인하는 중...");
+    }
+  </script>
 </body>
 </html>
