@@ -52,6 +52,17 @@
       background: #ff6fd8;
       color: #000;
     }
+    #loadingText {
+      margin-top: 1.5rem;
+      color: #00ffd5;
+      font-weight: bold;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
   </style>
 </head>
 <body>
@@ -104,18 +115,27 @@
         return;
       }
 
-      // 결과창 활성화
-      document.getElementById('sajuResult').style.display = 'block';
+      const resultBox = document.getElementById('sajuResult');
+      resultBox.style.display = 'none';
 
-      // 3단계 필터링 결과 출력
-      document.getElementById('basicSaju').innerText =
-        `${name}님은 ${birth}에 태어났으며, 기본 사주 정보가 분석 중입니다...`;
+      let loadingDiv = document.createElement('div');
+      loadingDiv.id = 'loadingText';
+      loadingDiv.innerText = "분석 중...🌌 파동을 읽는 중입니다...";
+      document.querySelector('.container').appendChild(loadingDiv);
 
-      document.getElementById('penguinThought').innerText =
-        `펭귄은 이 사주에 대해 “기운의 밀도와 파동의 교차”를 감지합니다. 직관적 감성과 이론적 사고가 공존합니다.`;
+      setTimeout(() => {
+        document.querySelector('.container').removeChild(loadingDiv);
+        resultBox.style.display = 'block';
 
-      document.getElementById('dorothyFeedback').innerText =
-        `도로시는 이 사주에서 “정서의 파동”을 읽습니다. 진심과 흐름을 따를 때, 우주는 조용히 길을 열어줄 것입니다.`;
+        document.getElementById('basicSaju').innerText =
+          `${name}님은 ${birth}에 태어났으며, 기본 사주 정보가 분석 중입니다...`;
+
+        document.getElementById('penguinThought').innerText =
+          `펭귄은 이 사주에 대해 “기운의 밀도와 파동의 교차”를 감지합니다. 직관적 감성과 이론적 사고가 공존합니다.`;
+
+        document.getElementById('dorothyFeedback').innerText =
+          `도로시는 이 사주에서 “정서의 파동”을 읽습니다. 진심과 흐름을 따를 때, 우주는 조용히 길을 열어줄 것입니다.`;
+      }, 2000);
     }
 
     function generateBujeok() {
