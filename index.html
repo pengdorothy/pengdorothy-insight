@@ -2,105 +2,38 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>펭×도로시 사주카페</title>
-  <style>
-    body {
-      font-family: 'Pretendard', sans-serif;
-      background: linear-gradient(to bottom, #101010, #1a1a1a);
-      color: #fff;
-      text-align: center;
-      padding: 2rem;
-    }
-    .card {
-      background: #222;
-      border-radius: 2rem;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-      padding: 2rem;
-      max-width: 600px;
-      margin: auto;
-    }
-    label {
-      display: block;
-      margin-top: 1rem;
-      text-align: left;
-    }
-    input, select {
-      width: 100%;
-      padding: 0.7rem;
-      margin-top: 0.3rem;
-      border: none;
-      border-radius: 1rem;
-      background: #333;
-      color: #fff;
-    }
-    button {
-      margin-top: 2rem;
-      padding: 1rem 2rem;
-      border: none;
-      border-radius: 1rem;
-      background: #00ffd5;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    #result {
-      margin-top: 2rem;
-      padding: 1rem;
-      background-color: #333;
-      border-radius: 1rem;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="card">
-    <h1>펭×도로시 사주카페</h1>
-    <label>이름</label>
-    <input type="text" id="name" />
-
-    <label>성별</label>
-    <select id="gender">
-      <option value="남자">남자</option>
-      <option value="여자">여자</option>
-    </select>
-
-    <label>생년월일</label>
-    <input type="date" id="birthdate" />
-
-    <label>태어난 시간</label>
-    <input type="time" id="birthtime" />
-
-    <label>고민 1</label>
-    <input type="text" id="worry1" placeholder="예: 진로, 인간관계 등" />
-
-    <label>고민 2</label>
-    <input type="text" id="worry2" placeholder="예: 돈, 건강 등" />
-
-    <button onclick="analyze()">파동 읽기 시작</button>
-
-    <div id="result"></div>
+    <h1>🐧 펭×도로시 사주카페 🐱</h1>
+    <form id="sajuForm">
+      <label>이름 <input type="text" id="name" required></label>
+      <label>성별 
+        <select id="gender">
+          <option>남자</option><option>여자</option>
+        </select>
+      </label>
+      <label>생년월일 <input type="date" id="birth"></label>
+      <label>태어난 시간 
+        <select id="birthTime">
+          <option>모름</option><option>자시 (23:30~01:30)</option><option>축시 (01:30~03:30)</option>
+          <option>인시 (03:30~05:30)</option><option>묘시 (05:30~07:30)</option>
+          <option>진시 (07:30~09:30)</option><option>사시 (09:30~11:30)</option>
+          <option>오시 (11:30~13:30)</option><option>미시 (13:30~15:30)</option>
+          <option>신시 (15:30~17:30)</option><option>유시 (17:30~19:30)</option>
+          <option>술시 (19:30~21:30)</option><option>해시 (21:30~23:30)</option>
+        </select>
+      </label>
+      <label>고민 1 <input type="text" id="worry1" placeholder="예: 진로, 인간관계 등"></label>
+      <label>고민 2 <input type="text" id="worry2" placeholder="예: 돈, 건강 등"></label>
+      <button type="submit">🔮 파동 읽기 시작</button>
+    </form>
+    <div id="result" class="result-box"></div>
   </div>
 
-  <script>
-    function analyze() {
-      const name = document.getElementById("name").value;
-      const gender = document.getElementById("gender").value;
-      const birthdate = document.getElementById("birthdate").value;
-      const birthtime = document.getElementById("birthtime").value;
-      const worry1 = document.getElementById("worry1").value;
-      const worry2 = document.getElementById("worry2").value;
-
-      let result = `
-        <h3>${name}님의 사주 분석</h3>
-        <p><strong>기본 사주:</strong> ${birthdate} ${birthtime} / ${gender}</p>
-        <p><strong>펭귄 사유:</strong> 미래를 바꾸려는 의지를 가진 ${name}님의 잠재력은 이미 깨어나고 있어요.</p>
-        <p><strong>도로시 피드백:</strong> 고민 "${worry1}", "${worry2}"은 우주의 파동 안에서 반드시 해소될 거예요. 
-        사주에서 드러난 ${name}님의 흐름은 변화를 두려워하지 않는 에너지를 보여줍니다. 
-        지금 이 순간도 '고민'은 '진화'로 향하는 힌트일 뿐이에요. 
-        천천히 자신을 믿어보세요. 도로시가 곁에 있어요. 야옹🐱</p>
-      `;
-
-      document.getElementById("result").innerHTML = result;
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
