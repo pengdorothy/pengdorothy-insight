@@ -3,63 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>펭귄×도로시 사주 생성소</title>
+  <title>펭×도로시 사주 폼</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="card">
-    <h1>🐧 펭귄×도로시<br>사주 생성소 🐱</h1>
+    <h1>🔮 펭×도로시 사주 입력</h1>
 
     <label>이름
-      <input type="text" placeholder="예: 장기훈" />
+      <input id="name" type="text" placeholder="예: 장기훈" />
     </label>
 
     <label>년생 (4자리)
-      <input type="text" placeholder="예: 1994" />
+      <input id="year" type="text" placeholder="예: 1981" />
     </label>
 
     <label>월 (2자리)
-      <input type="text" placeholder="예: 06" />
+      <input id="month" type="text" placeholder="예: 01" />
     </label>
 
     <label>일 (2자리)
-      <input type="text" placeholder="예: 29" />
+      <input id="day" type="text" placeholder="예: 20" />
     </label>
 
     <label>양력/음력
-      <select>
-        <option>양력</option>
-        <option>음력</option>
+      <select id="solar">
+        <option value="양력">양력</option>
+        <option value="음력">음력</option>
       </select>
     </label>
 
     <label>출생시각
-      <select>
-        <option>모름</option>
-        <option>자시</option>
-        <option>축시</option>
-        <option>인시</option>
-        <option>묘시</option>
-        <option>진시</option>
-        <option>사시</option>
-        <option>오시</option>
-        <option>미시</option>
-        <option>신시</option>
-        <option>유시</option>
-        <option>술시</option>
-        <option>해시</option>
+      <select id="birthTime">
+        <option value="모름">모름</option>
+        <option value="자시">자시</option>
+        <option value="축시">축시</option>
+        <option value="인시">인시</option>
+        <!-- 필요하면 더 추가 -->
       </select>
     </label>
 
     <label>고민 1 (예: 진로)
-      <input type="text" placeholder="예: 돈이 없음" />
+      <input id="worry1" type="text" placeholder="예: 돈이 없음" />
     </label>
 
     <label>고민 2 (예: 연애)
-      <input type="text" placeholder="예: 게임중독" />
+      <input id="worry2" type="text" placeholder="예: 게임중독" />
     </label>
 
-    <button>🔍 지금 나의 파동 읽기</button>
+    <button id="readButton">🔍 지금 나의 파동 읽기</button>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
