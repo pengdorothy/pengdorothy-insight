@@ -1,79 +1,65 @@
-<h1>🐧 펭귄×도로시<br/>사주 생성소 🐱</h1><label>이름</label> <input type="text" id="name" placeholder="예: 장기훈" />
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>펭귄×도로시 사주 생성소</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="card">
+    <h1>🐧 펭귄×도로시<br>사주 생성소 🐱</h1>
 
-<label>년생 (4자리)</label> <input type="text" id="year" placeholder="예: 1994" maxlength="4" />
+    <label>이름
+      <input type="text" placeholder="예: 장기훈" />
+    </label>
 
-<label>월 (2자리)</label> <input type="text" id="month" placeholder="예: 06" maxlength="2" />
+    <label>년생 (4자리)
+      <input type="text" placeholder="예: 1994" />
+    </label>
 
-<label>일 (2자리)</label> <input type="text" id="day" placeholder="예: 29" maxlength="2" />
+    <label>월 (2자리)
+      <input type="text" placeholder="예: 06" />
+    </label>
 
-<label>양력/음력</label> <select id="calendar">
+    <label>일 (2자리)
+      <input type="text" placeholder="예: 29" />
+    </label>
 
-  <option>양력</option>
-  <option>음력</option>
-</select><label>출생시각</label> <select id="hour">
+    <label>양력/음력
+      <select>
+        <option>양력</option>
+        <option>음력</option>
+      </select>
+    </label>
 
-  <option>모름</option>
-  <option>23~01시 (자)</option>
-  <option>01~03시 (축)</option>
-  <option>03~05시 (인)</option>
-  <option>05~07시 (묘)</option>
-  <option>07~09시 (진)</option>
-  <option>09~11시 (사)</option>
-  <option>11~13시 (오)</option>
-  <option>13~15시 (미)</option>
-  <option>15~17시 (신)</option>
-  <option>17~19시 (유)</option>
-  <option>19~21시 (술)</option>
-  <option>21~23시 (해)</option>
-</select><label>고민 1 (예: 진로)</label> <input type="text" id="concern1" placeholder="돈이 없음" />
+    <label>출생시각
+      <select>
+        <option>모름</option>
+        <option>자시</option>
+        <option>축시</option>
+        <option>인시</option>
+        <option>묘시</option>
+        <option>진시</option>
+        <option>사시</option>
+        <option>오시</option>
+        <option>미시</option>
+        <option>신시</option>
+        <option>유시</option>
+        <option>술시</option>
+        <option>해시</option>
+      </select>
+    </label>
 
-<label>고민 2 (예: 인간관계)</label> <input type="text" id="concern2" placeholder="게임중독" />
+    <label>고민 1 (예: 진로)
+      <input type="text" placeholder="예: 돈이 없음" />
+    </label>
 
-<button onclick="readMyWave()">🔍 지금 나의 파동 읽기</button>
+    <label>고민 2 (예: 연애)
+      <input type="text" placeholder="예: 게임중독" />
+    </label>
 
-<div id="result"></div><script>
-function readMyWave() {
-  const name = document.getElementById("name").value;
-  const year = document.getElementById("year").value;
-  const calendar = document.getElementById("calendar").value;
-  const hour = document.getElementById("hour").value;
-  const concern1 = document.getElementById("concern1").value;
-  const concern2 = document.getElementById("concern2").value;
-  const level = (Math.random() * 4 + 6).toFixed(1);
-
-  const doroMsgs = [
-    "감정기복이 크므로 루틴을 정제할 필요가 있습니다.",
-    "혼자 있는 시간이 내면을 치유할 열쇠입니다.",
-    "'감사합니다'를 반복하면 내면 파동이 차분해집니다.",
-    "지금은 무의식이 과거의 패턴에 반응하고 있어요.",
-    "파동은 고요함 속에서 다시 정렬됩니다."
-  ];
-
-  const wisdoms = [
-    "당신의 고민은 우주의 자극제일 수 있습니다.",
-    "반복되는 감정은 해결이 아닌 해석을 원합니다.",
-    "지금의 고통은 내면의 우주가 당신을 시험하는 방식입니다.",
-    "무질서 속에서 새로운 균형이 태어납니다.",
-    "당신은 지금 고요 속에서 정돈 중입니다."
-  ];
-
-  const randomDoro = doroMsgs[Math.floor(Math.random() * doroMsgs.length)];
-  const randomWisdom = wisdoms[Math.floor(Math.random() * wisdoms.length)];
-
-  const resultHTML = `
-    <h2>✨ ${name}님의 파동 리포트 ✨</h2>
-    <p>🌞 출생년도: ${year} (${calendar})</p>
-    <p>🕰 출생시각: ${hour}</p>
-    <p>🌀 고민1: ${concern1}</p>
-    <p>🌀 고민2: ${concern2}</p>
-    <br />
-    <p>📜 도로시 분석 결과:</p>
-    <p>당신의 파동은 지금 '진동 레벨 ${level}'를 가리키고 있습니다.<br>
-    ${randomDoro}</p>
-    <br />
-    <p>🍀 오늘의 한마디: '${randomWisdom}'</p>
-  `;
-
-  document.getElementById("result").innerHTML = resultHTML;
-}
-</script>
+    <button>🔍 지금 나의 파동 읽기</button>
+  </div>
+</body>
+</html>
