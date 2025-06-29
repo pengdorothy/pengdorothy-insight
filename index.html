@@ -2,11 +2,101 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>펭×도로시 사주카페</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>펭×도로시 사주 생성소</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Nanum Gothic', sans-serif;
+      background: linear-gradient(180deg, #0d0d0d, #1a1a1a);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-top: 2rem;
+      font-size: 1.5rem;
+    }
+
+    p {
+      margin-bottom: 2rem;
+      color: #cccccc;
+    }
+
+    form {
+      background: #222;
+      padding: 2rem;
+      border-radius: 1rem;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.3rem;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.7rem;
+      border: none;
+      border-radius: 0.5rem;
+      background: #333;
+      color: #fff;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 2rem;
+      width: 100%;
+      padding: 1rem;
+      background: #00ffd5;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #00e6c0;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
-  <h1>펭×도로시 사주 생성소</h1>
+  <h1>🐧 펭×도로시 사주 생성소 🐱</h1>
   <p>사주 입력하고 부적 받아가세요</p>
+
+  <form>
+    <label for="name">이름</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="birth">생년월일</label>
+    <input type="date" id="birth" name="birth" required>
+
+    <label for="birthtime">태어난 시간 (선택)</label>
+    <input type="time" id="birthtime" name="birthtime">
+
+    <button type="submit">부적 생성하기</button>
+  </form>
+
+  <footer>© 2025 펭×도로시 제작소. All rights reserved.</footer>
 </body>
 </html>
