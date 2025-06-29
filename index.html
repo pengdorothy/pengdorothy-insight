@@ -1,149 +1,79 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>펭귄×도로시 사주 생성소</title>
-  <style>
-    body {
-      font-family: 'Pretendard', sans-serif;
-      background: linear-gradient(to bottom, #101010, #1a1a1a);
-      color: #fff;
-      text-align: center;
-      padding: 2rem;
-    }
+<h1>🐧 펭귄×도로시<br/>사주 생성소 🐱</h1><label>이름</label> <input type="text" id="name" placeholder="예: 장기훈" />
 
-    .card {
-      background: #222;
-      border-radius: 2rem;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-      padding: 2rem;
-      max-width: 600px;
-      margin: auto;
-    }
+<label>년생 (4자리)</label> <input type="text" id="year" placeholder="예: 1994" maxlength="4" />
 
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
+<label>월 (2자리)</label> <input type="text" id="month" placeholder="예: 06" maxlength="2" />
 
-    label {
-      display: block;
-      margin-top: 1rem;
-      text-align: left;
-    }
+<label>일 (2자리)</label> <input type="text" id="day" placeholder="예: 29" maxlength="2" />
 
-    input, select, textarea {
-      width: 100%;
-      padding: 0.7rem;
-      margin-top: 0.3rem;
-      border: none;
-      border-radius: 1rem;
-      background: #333;
-      color: #fff;
-    }
+<label>양력/음력</label> <select id="calendar">
 
-    button {
-      margin-top: 2rem;
-      padding: 1rem 2rem;
-      border: none;
-      border-radius: 1rem;
-      background: #00ffd5;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-    }
+  <option>양력</option>
+  <option>음력</option>
+</select><label>출생시각</label> <select id="hour">
 
-    #result {
-      margin-top: 2rem;
-      white-space: pre-wrap;
-      text-align: left;
-    }
-  </style>
-</head>
-<body>
-  <div class="card">
-    <h1>🐧 펭귄×도로시<br/>사주 생성소 🐱</h1>
+  <option>모름</option>
+  <option>23~01시 (자)</option>
+  <option>01~03시 (축)</option>
+  <option>03~05시 (인)</option>
+  <option>05~07시 (묘)</option>
+  <option>07~09시 (진)</option>
+  <option>09~11시 (사)</option>
+  <option>11~13시 (오)</option>
+  <option>13~15시 (미)</option>
+  <option>15~17시 (신)</option>
+  <option>17~19시 (유)</option>
+  <option>19~21시 (술)</option>
+  <option>21~23시 (해)</option>
+</select><label>고민 1 (예: 진로)</label> <input type="text" id="concern1" placeholder="돈이 없음" />
 
-    <label>이름</label>
-    <input type="text" id="name" placeholder="예: 장기훈" />
+<label>고민 2 (예: 인간관계)</label> <input type="text" id="concern2" placeholder="게임중독" />
 
-    <label>년생 (4자리)</label>
-    <input type="text" id="year" placeholder="예: 1994" maxlength="4"/>
-<!-- 생월 -->
-<label>월 (2자리)</label>
-<input type="text" id="month" placeholder="예: 06" maxlength="2" />
+<button onclick="readMyWave()">🔍 지금 나의 파동 읽기</button>
 
-<!-- 생일 -->
-<label>일 (2자리)</label>
-<input type="text" id="day" placeholder="예: 29" maxlength="2" />
-    <label>양력/음력</label>
-    <select id="calendar">
-      <option>양력</option>
-      <option>음력</option>
-    </select>
+<div id="result"></div><script>
+function readMyWave() {
+  const name = document.getElementById("name").value;
+  const year = document.getElementById("year").value;
+  const calendar = document.getElementById("calendar").value;
+  const hour = document.getElementById("hour").value;
+  const concern1 = document.getElementById("concern1").value;
+  const concern2 = document.getElementById("concern2").value;
+  const level = (Math.random() * 4 + 6).toFixed(1);
 
-    <label>태어난 시간</label>
-    <select id="birthtime">
-      <option>모름</option>
-      <option>23~01시 (자시)</option>
-      <option>01~03시 (축시)</option>
-      <option>03~05시 (인시)</option>
-      <option>05~07시 (묘시)</option>
-      <option>07~09시 (진시)</option>
-      <option>09~11시 (사시)</option>
-      <option>11~13시 (오시)</option>
-      <option>13~15시 (미시)</option>
-      <option>15~17시 (신시)</option>
-      <option>17~19시 (유시)</option>
-      <option>19~21시 (술시)</option>
-      <option>21~23시 (해시)</option>
-    </select>
+  const doroMsgs = [
+    "감정기복이 크므로 루틴을 정제할 필요가 있습니다.",
+    "혼자 있는 시간이 내면을 치유할 열쇠입니다.",
+    "'감사합니다'를 반복하면 내면 파동이 차분해집니다.",
+    "지금은 무의식이 과거의 패턴에 반응하고 있어요.",
+    "파동은 고요함 속에서 다시 정렬됩니다."
+  ];
 
-    <label>고민 1 (예: 진로)</label>
-    <input type="text" id="worry1" placeholder="예: 진로" />
+  const wisdoms = [
+    "당신의 고민은 우주의 자극제일 수 있습니다.",
+    "반복되는 감정은 해결이 아닌 해석을 원합니다.",
+    "지금의 고통은 내면의 우주가 당신을 시험하는 방식입니다.",
+    "무질서 속에서 새로운 균형이 태어납니다.",
+    "당신은 지금 고요 속에서 정돈 중입니다."
+  ];
 
-    <label>고민 2 (예: 인간관계)</label>
-    <input type="text" id="worry2" placeholder="예: 인간관계" />
+  const randomDoro = doroMsgs[Math.floor(Math.random() * doroMsgs.length)];
+  const randomWisdom = wisdoms[Math.floor(Math.random() * wisdoms.length)];
 
-    <button onclick="analyze()">🔍 지금 나의 파동 읽기</button>
+  const resultHTML = `
+    <h2>✨ ${name}님의 파동 리포트 ✨</h2>
+    <p>🌞 출생년도: ${year} (${calendar})</p>
+    <p>🕰 출생시각: ${hour}</p>
+    <p>🌀 고민1: ${concern1}</p>
+    <p>🌀 고민2: ${concern2}</p>
+    <br />
+    <p>📜 도로시 분석 결과:</p>
+    <p>당신의 파동은 지금 '진동 레벨 ${level}'를 가리키고 있습니다.<br>
+    ${randomDoro}</p>
+    <br />
+    <p>🍀 오늘의 한마디: '${randomWisdom}'</p>
+  `;
 
-    <div id="result"></div>
-  </div>
-
-  <script>
-    function analyze() {
-      const name = document.getElementById('name').value;
-      const year = document.getElementById('year').value;
-      const cal = document.getElementById('calendar').value;
-      const time = document.getElementById('birthtime').value;
-      const worry1 = document.getElementById('worry1').value;
-      const worry2 = document.getElementById('worry2').value;
-
-      if (!name || !year) {
-        alert("이름과 출생연도를 입력해주세요!");
-        return;
-      }
-
-      const msg = 
-`✨ ${name}님의 파동 리포트 ✨
-
-🌞 출생년도: ${year} (${cal})
-🕰️ 출생시각: ${time}
-
-🌀 고민1: ${worry1 || "없음"}
-🌀 고민2: ${worry2 || "없음"}
-
-📜 도로시 분석 결과:
-당신의 파동은 지금 '진동 레벨 7.4'를 가리키고 있습니다.
-내면의 중심이 흔들릴 수 있는 시기이니, 반복되는 패턴에 주의하세요.
-'감사합니다'를 마음속으로 되뇌이면 파동이 안정됩니다.
-
-🍀 오늘의 한마디: '당신의 고민은 우주의 의도가 아닐 수 있습니다.'
-`;
-
-      document.getElementById('result').innerText = msg;
-    }
-  </script>
-</body>
-</html>
+  document.getElementById("result").innerHTML = resultHTML;
+}
+</script>
