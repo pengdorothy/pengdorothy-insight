@@ -75,15 +75,9 @@
     <input type="text" id="name" placeholder="이름을 입력하세요" />
 
     <div class="flex-row">
-      <select id="birthYear">
-        <option disabled selected>년도</option>
-      </select>
-      <select id="birthMonth">
-        <option disabled selected>월</option>
-      </select>
-      <select id="birthDay">
-        <option disabled selected>일</option>
-      </select>
+      <select id="birthYear"><option disabled selected>년도</option></select>
+      <select id="birthMonth"><option disabled selected>월</option></select>
+      <select id="birthDay"><option disabled selected>일</option></select>
     </div>
 
     <select id="calendarType">
@@ -92,7 +86,7 @@
     </select>
 
     <select id="birthtime">
-      <option selected>창조시간 (선택)</option>
+      <option selected>태어난 시간 (선택)</option>
       <option>자시 (23시~01시)</option>
       <option>축시 (01시~03시)</option>
       <option>인시 (03시~05시)</option>
@@ -106,6 +100,9 @@
       <option>술시 (19시~21시)</option>
       <option>해시 (21시~23시)</option>
     </select>
+
+    <input type="text" id="worry1" placeholder="고민 1 (예: 진로)" />
+    <input type="text" id="worry2" placeholder="고민 2 (예: 인간관계)" />
 
     <button onclick="analyzeSaju()">✨ 사주 분석하기</button>
 
@@ -122,7 +119,6 @@
       <button class="bujeok-button" onclick="generateBujeok()">부적 생성 (선택)</button>
     </div>
   </div>
-
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const yearSelect = document.getElementById("birthYear");
@@ -149,6 +145,8 @@
     const day = document.getElementById('birthDay').value.padStart(2, '0');
     const time = document.getElementById('birthtime').value;
     const calendarType = document.getElementById('calendarType').value;
+    const worry1 = document.getElementById('worry1').value;
+    const worry2 = document.getElementById('worry2').value;
 
     if (!name || !year || !month || !day) {
       alert("모든 정보를 입력해주세요!");
@@ -168,14 +166,28 @@
       document.querySelector('.container').removeChild(loadingDiv);
       resultBox.style.display = 'block';
 
+      // 1단계
       document.getElementById('basicSaju').innerText =
-        `${name}님은 ${birth} (${calendarType === 'lunar' ? '음력' : '양력'})에 태어나셨습니다. 이 시기의 우주 흐름은 특정한 음양의 진동을 품고 있으며, 당신의 인생은 내면의 리듬을 중심으로 짜여 있을 가능성이 높습니다.`;
+        `${name}님은 ${birth} (${calendarType === 'lunar' ? '음력' : '양력'})에 태어났습니다.\n이 시기의 하늘은 특별히 ${time}의 기운을 받아 형성되며, 생년월일은 당신의 인생 테마를 구성하는 기반이 됩니다.\n대체로 이 시기 출생자는 내면 깊은 곳에서 흐르는 파장을 감지하고 세상의 흐름에 민감하게 반응합니다.`;
 
+      // 2단계
       document.getElementById('penguinThought').innerText =
-        `펭귄은 이 사주를 통해, 세상의 질서 안에서 스스로의 구조를 다시 세우려는 당신의 마음을 읽습니다. 조용하지만 강한, 깊고 단단한 결정을 할 줄 아는 당신의 모습이 인상적입니다.`;
+        `펭귄은 이 사주에서 ‘결정과 실행의 간극’을 감지합니다. 당신은 머리로는 이미 알고 있으나, 마음은 그 실행을 오래 숙성시키는 유형입니다.\n이는 단점이 아니라, 세상에서 가장 ‘타이밍이 정확한 사람’으로 작용할 수 있는 능력입니다.\n당신은 아직 본인의 속도를 완전히 수용하지 않았을 수 있지만, 그 속도야말로 당신을 지키는 방패입니다.`;
 
-      document.getElementById('dorothyFeedback').innerText =
-        `도로시는 이 사주에서 은은한 빛의 맥을 감지했습니다. 당신은 삶의 흐름을 억지로 바꾸기보다, 그것을 부드럽게 받아들이며 내부에서 반응하는 힘을 지닌 분입니다. 이 흐름은 곧 커다란 전환점을 부드럽게 안내할 것입니다.`;
+      // 3단계 + 고민 조언
+      let feedback = `도로시는 이 사주에서 정서의 울림을 들었습니다. 겉으로는 차분하지만, 내면은 섬세하게 요동칩니다.\n외부에서 오는 말보다 스스로 느끼는 진동에 집중할 때, 인생의 중요한 결정을 보다 조화롭게 이끌 수 있습니다.\n특히 감정에 의존하기보다는 ‘흐름을 직관적으로 타는 능력’을 자각하면, 복잡한 시기도 무리 없이 넘어갈 수 있습니다.\n\n`;
+
+      if (worry1 || worry2) {
+        feedback += `💭 고민 분석 결과\n`;
+        if (worry1) {
+          feedback += `• “${worry1}”에 대해서는 단기적 판단보다 장기적 안정성이 유리합니다.\n`;
+        }
+        if (worry2) {
+          feedback += `• “${worry2}”은(는) 구조보다는 감정의 뿌리를 먼저 살피는 것이 도움이 됩니다.\n`;
+        }
+      }
+
+      document.getElementById('dorothyFeedback').innerText = feedback;
     }, 2000);
   }
 
@@ -183,4 +195,5 @@
     alert("🐾 이번 부적은 AI 영리 공작을 통해 생성됩니다.\n운명을 부드럽게 리디자인하는 중...");
   }
 </script>
-    
+</body>
+</html>
