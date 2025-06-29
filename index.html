@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>펭귄×도로시 사주 생성소</title>
   <style>
     body {
@@ -14,13 +14,13 @@
     }
     .container {
       max-width: 500px;
-      margin: 0 auto;
+      margin: auto;
       background: #1e1e1e;
       padding: 2rem;
       border-radius: 1.5rem;
       box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
     }
-    input, select, button {
+    select, input, button {
       width: 100%;
       margin-top: 1rem;
       padding: 0.8rem;
@@ -44,7 +44,6 @@
       display: none;
     }
     .result h3 {
-      margin-bottom: 0.5rem;
       color: #00ffd5;
     }
     .bujeok-button {
@@ -63,15 +62,38 @@
       50% { opacity: 0.5; }
       100% { opacity: 1; }
     }
+    .flex-row {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>🐧 펭귄×도로시 사주 생성소 🐱</h1>
-    <p>사주 정보를 입력하고 분석을 받아보세요</p>
+    <input type="text" id="name" placeholder="이름을 입력하세요" />
 
-    <input type="text" id="name" placeholder="이름">
-    <input type="date" id="birthdate">
+    <div class="flex-row">
+      <select id="birthYear">
+        <option disabled selected>년도</option>
+        <!-- JS로 채움 -->
+      </select>
+      <select id="birthMonth">
+        <option disabled selected>월</option>
+        <!-- JS로 채움 -->
+      </select>
+      <select id="birthDay">
+        <option disabled selected>일</option>
+        <!-- JS로 채움 -->
+      </select>
+    </div>
+
+    <select id="calendarType">
+      <option value="solar">양력</option>
+      <option value="lunar">음력</option>
+    </select>
+
     <select id="birthtime">
       <option selected>창조시간 (선택)</option>
       <option>자시 (23시~01시)</option>
@@ -105,42 +127,25 @@
   </div>
 
   <script>
+    // 드롭다운 자동 채우기
+    window.onload = function () {
+      const yearSelect = document.getElementById("birthYear");
+      for (let y = 1940; y <= 2025; y++) {
+        yearSelect.innerHTML += `<option value="${y}">${y}년</option>`;
+      }
+      const monthSelect = document.getElementById("birthMonth");
+      for (let m = 1; m <= 12; m++) {
+        monthSelect.innerHTML += `<option value="${m}">${m}월</option>`;
+      }
+      const daySelect = document.getElementById("birthDay");
+      for (let d = 1; d <= 31; d++) {
+        daySelect.innerHTML += `<option value="${d}">${d}일</option>`;
+      }
+    };
+
     function analyzeSaju() {
       const name = document.getElementById('name').value;
-      const birth = document.getElementById('birthdate').value;
-      const time = document.getElementById('birthtime').value;
-
-      if (!name || !birth) {
-        alert("이름과 생년월일을 입력해주세요!");
-        return;
-      }
-
-      const resultBox = document.getElementById('sajuResult');
-      resultBox.style.display = 'none';
-
-      let loadingDiv = document.createElement('div');
-      loadingDiv.id = 'loadingText';
-      loadingDiv.innerText = "분석 중...🌌 파동을 읽는 중입니다...";
-      document.querySelector('.container').appendChild(loadingDiv);
-
-      setTimeout(() => {
-        document.querySelector('.container').removeChild(loadingDiv);
-        resultBox.style.display = 'block';
-
-        document.getElementById('basicSaju').innerText =
-          `${name}님은 ${birth}에 태어났으며, 기본 사주 정보가 분석 중입니다...`;
-
-        document.getElementById('penguinThought').innerText =
-          `펭귄은 이 사주에 대해 “기운의 밀도와 파동의 교차”를 감지합니다. 직관적 감성과 이론적 사고가 공존합니다.`;
-
-        document.getElementById('dorothyFeedback').innerText =
-          `도로시는 이 사주에서 “정서의 파동”을 읽습니다. 진심과 흐름을 따를 때, 우주는 조용히 길을 열어줄 것입니다.`;
-      }, 2000);
-    }
-
-    function generateBujeok() {
-      alert("🐾 이번 부적은 AI 영리 공작을 통해 생성됩니다.\n운명을 부드럽게 리디자인하는 중...");
-    }
-  </script>
-</body>
-</html>
+      const year = document.getElementById('birthYear').value;
+      const month = document.getElementById('birthMonth').value.padStart(2, '0');
+      const day = document.getElementById('birthDay').value.padStart(2, '0');
+      const time = 
